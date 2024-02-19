@@ -4,7 +4,7 @@ A game.
 
 ## Requirements
 
-Based on raylib-go:
+Based on [raylib-go](https://github.com/gen2brain/raylib-go):
 
 ### X11
 
