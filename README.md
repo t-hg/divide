@@ -4,6 +4,8 @@ A game.
 
 ## Requirements
 
+Based on raylib-go:
+
 ### X11
 
 ```shell
