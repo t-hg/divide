@@ -1,3 +1,3 @@
-# Devide
+# Divide
 
 A game.
