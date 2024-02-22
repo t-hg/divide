@@ -7,12 +7,7 @@ type Room struct {
 	Width, Height int32
 }
 
-const (
-	DirHorizontal = iota
-	DirVertical
-)
-
-func (room *Room) Divide(posX, posY int32, dir int) {
+func (room *Room) Divide(posX, posY int32, dir Direction) {
 	if posX < room.PosX || posX > room.PosX+room.Width {
 		return
 	}

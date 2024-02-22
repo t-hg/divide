@@ -11,7 +11,10 @@ type Ball struct {
 	Destroyed  bool
 }
 
-const MaxForce = 3
+const (
+	BallRadius   = 4
+	BallMaxForce = 3
+)
 
 func RandomBall(room Room) Ball {
 	for {
@@ -20,7 +23,7 @@ func RandomBall(room Room) Ball {
 			PosY:  rand.Int31n(room.Height) + room.PosY,
 			DirX:  int32(rand.Intn(3) - 1),
 			DirY:  int32(rand.Intn(3) - 1),
-			Force: rand.Float64()*(MaxForce-1) + 1,
+			Force: rand.Float64()*(BallMaxForce-1) + 1,
 		}
 		if ball.DirX == 0 && ball.DirY == 0 {
 			continue
@@ -49,20 +52,20 @@ func (ball *Ball) NextPosition(room Room) {
 	ball.PosX += int32(float64(ball.DirX) * ball.Force)
 	ball.PosY += int32(float64(ball.DirY) * ball.Force)
 
-	if ball.PosX < room.PosX-MaxForce || ball.PosX > room.PosX+room.Width+MaxForce {
+	if ball.PosX < room.PosX-BallMaxForce || ball.PosX > room.PosX+room.Width+BallMaxForce {
 		ball.Destroyed = true
 	}
 
-	if ball.PosY < room.PosY-MaxForce || ball.PosY > room.PosY+room.Height+MaxForce {
+	if ball.PosY < room.PosY-BallMaxForce || ball.PosY > room.PosY+room.Height+BallMaxForce {
 		ball.Destroyed = true
 	}
 }
 
 func AllDestroyed(balls []Ball) bool {
-    for _, ball := range balls {
-        if !ball.Destroyed {
-            return false
-        }
-    }
-    return true
+	for _, ball := range balls {
+		if !ball.Destroyed {
+			return false
+		}
+	}
+	return true
 }

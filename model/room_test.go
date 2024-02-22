@@ -18,7 +18,7 @@ func TestDivide(t *testing.T) {
 
 	tests := []struct {
 		PosX, PosY   int32
-		Dir          int
+		Dir          Direction
 		ExpectedRoom Room
 	}{
 		{

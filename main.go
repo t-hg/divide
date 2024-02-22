@@ -43,7 +43,7 @@ func main() {
 
 		for i := range balls {
             if !balls[i].Destroyed {
-                rl.DrawCircle(balls[i].PosX, balls[i].PosY, 4, rl.Black)
+                rl.DrawCircle(balls[i].PosX, balls[i].PosY, model.BallRadius, rl.Black)
                 balls[i].NextPosition(room)
             }
 		}
