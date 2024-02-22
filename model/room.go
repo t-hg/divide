@@ -28,27 +28,27 @@ func (room *Room) Divide(posX, posY int32, dir Direction) {
 			Width:  room.Width,
 			Height: room.PosY + room.Height - posY,
 		}
-        biggerRoom := biggerRoom(upperRoom, lowerRoom)
-        room.PosX = biggerRoom.PosX
-        room.PosY = biggerRoom.PosY
-        room.Height = biggerRoom.Height
+		biggerRoom := biggerRoom(upperRoom, lowerRoom)
+		room.PosX = biggerRoom.PosX
+		room.PosY = biggerRoom.PosY
+		room.Height = biggerRoom.Height
 	case DirVertical:
-        leftRoom := Room {
-            PosX: room.PosX,
-            PosY: room.PosY,
-            Width: posX - room.PosX,
-            Height: room.Height, 
-        }
-        rightRoom := Room {
-            PosX: posX,
-            PosY: room.PosY,
-            Width: room.PosX + room.Width - posX,
-            Height: room.Height, 
-        }
-        biggerRoom := biggerRoom(leftRoom, rightRoom)
-        room.PosX = biggerRoom.PosX
-        room.PosY = biggerRoom.PosY
-        room.Width = biggerRoom.Width
+		leftRoom := Room{
+			PosX:   room.PosX,
+			PosY:   room.PosY,
+			Width:  posX - room.PosX,
+			Height: room.Height,
+		}
+		rightRoom := Room{
+			PosX:   posX,
+			PosY:   room.PosY,
+			Width:  room.PosX + room.Width - posX,
+			Height: room.Height,
+		}
+		biggerRoom := biggerRoom(leftRoom, rightRoom)
+		room.PosX = biggerRoom.PosX
+		room.PosY = biggerRoom.PosY
+		room.Width = biggerRoom.Width
 	default:
 		return
 	}

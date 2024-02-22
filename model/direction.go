@@ -6,4 +6,3 @@ const (
 	DirHorizontal Direction = iota
 	DirVertical
 )
-
