@@ -3,6 +3,7 @@ package model
 const DividerExpandSpeed = 4
 
 type Divider struct {
+	ClickX, ClickY int32
 	StartX, StartY int32
 	EndX, EndY     int32
 	Dir            Direction

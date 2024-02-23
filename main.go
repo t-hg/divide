@@ -62,6 +62,8 @@ func main() {
 			if divider == nil {
 				pos := rl.GetMousePosition()
 				divider = &model.Divider{
+					ClickX:        int32(pos.X),
+					ClickY:        int32(pos.Y),
 					StartX:        int32(pos.X),
 					StartY:        int32(pos.Y),
 					EndX:          int32(pos.X),
@@ -74,7 +76,7 @@ func main() {
 
 		if divider != nil {
 			if divider.FullyExpanded {
-				room.Divide(divider.StartX, divider.StartY, divider.Dir)
+				room.Divide(divider.ClickX, divider.ClickY, divider.Dir)
 				divider = nil
 			} else {
 				rl.DrawLineEx(rl.Vector2{
