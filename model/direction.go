@@ -3,6 +3,7 @@ package model
 type Direction int
 
 const (
-	DirHorizontal Direction = iota
+	DirUndefined Direction = iota
+	DirHorizontal = iota
 	DirVertical
 )

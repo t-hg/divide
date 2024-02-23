@@ -20,6 +20,8 @@ func main() {
 
 	balls := model.RandomBalls(room, 25)
 
+	var divider *model.Divider
+
 	rl.InitWindow(ScreenWidth, ScreenHeight, "divide")
 	defer rl.CloseWindow()
 
@@ -48,14 +50,36 @@ func main() {
 			}
 		}
 
+		divideDirection := model.DirUndefined
+
 		if rl.IsMouseButtonPressed(rl.MouseButtonLeft) {
-			pos := rl.GetMousePosition()
-			room.Divide(int32(pos.X), int32(pos.Y), model.DirVertical)
+			divideDirection = model.DirVertical
+		} else if rl.IsMouseButtonPressed(rl.MouseButtonRight) {
+			divideDirection = model.DirHorizontal
 		}
 
-		if rl.IsMouseButtonPressed(rl.MouseButtonRight) {
-			pos := rl.GetMousePosition()
-			room.Divide(int32(pos.X), int32(pos.Y), model.DirHorizontal)
+		if divideDirection != model.DirUndefined {
+			if (divider == nil) {
+				pos := rl.GetMousePosition()
+				divider = &model.Divider{
+					StartX: int32(pos.X),
+					StartY: int32(pos.Y),
+					EndX: int32(pos.X),
+					EndY: int32(pos.Y),
+					Dir: divideDirection,
+					FullyExpanded: false,
+				}	
+			}
+		}
+
+		if divider != nil {
+			if divider.FullyExpanded {
+				room.Divide(divider.StartX, divider.StartY, divider.Dir)	
+				divider = nil
+			} else {
+				rl.DrawLine(divider.StartX, divider.StartY, divider.EndX, divider.EndY, rl.Black)
+				divider.Expand(room)
+			}
 		}
 
 		rl.EndDrawing()
