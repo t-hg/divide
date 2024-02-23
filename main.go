@@ -59,25 +59,31 @@ func main() {
 		}
 
 		if divideDirection != model.DirUndefined {
-			if (divider == nil) {
+			if divider == nil {
 				pos := rl.GetMousePosition()
 				divider = &model.Divider{
-					StartX: int32(pos.X),
-					StartY: int32(pos.Y),
-					EndX: int32(pos.X),
-					EndY: int32(pos.Y),
-					Dir: divideDirection,
+					StartX:        int32(pos.X),
+					StartY:        int32(pos.Y),
+					EndX:          int32(pos.X),
+					EndY:          int32(pos.Y),
+					Dir:           divideDirection,
 					FullyExpanded: false,
-				}	
+				}
 			}
 		}
 
 		if divider != nil {
 			if divider.FullyExpanded {
-				room.Divide(divider.StartX, divider.StartY, divider.Dir)	
+				room.Divide(divider.StartX, divider.StartY, divider.Dir)
 				divider = nil
 			} else {
-				rl.DrawLine(divider.StartX, divider.StartY, divider.EndX, divider.EndY, rl.Black)
+				rl.DrawLineEx(rl.Vector2{
+					X: float32(divider.StartX),
+					Y: float32(divider.StartY),
+				}, rl.Vector2{
+					X: float32(divider.EndX),
+					Y: float32(divider.EndY),
+				}, 4, rl.Black)
 				divider.Expand(room)
 			}
 		}

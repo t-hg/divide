@@ -1,7 +1,6 @@
 package model
 
-const DividerWidth = 4
-const DividerExpandSpeed = 1
+const DividerExpandSpeed = 4
 
 type Divider struct {
 	StartX, StartY int32
